@@ -11,23 +11,29 @@
 <body>
   <div id="viewer"></div>
 
-  <script type="module">
-    import * as SDV from "https://cdn.jsdelivr.net/npm/@shapediver/viewer@3/dist/viewer.esm.js";
+  <!-- ShapeDiver Viewer -->
+  <script src="https://cdn.jsdelivr.net/npm/@shapediver/viewer@3/dist/viewer.umd.js"></script>
 
+  <script>
     const modelId = "p1caGxgMsvySTtIoswZ9pIG2WPRGRz";
     const ticket = "d2f7b4bc51e47171f59b4603b113cb378ea54a552a9a28215308547cbdd9351f2ac15226984f3244a920fe60dd2f3674732c7f65440d446349df08ce80cf2c4870d85bbe7085c2fcb463833a82114f0f7af22fd0700b1d64c919c919b9affdc475ca13311fed6b-635196fa69895e98fc92f81c48c2c4ee";
 
-    const session = await SDV.createSession({
-      ticket: ticket,
-      modelViewUrl: `https://www.shapediver.com/app/m/p1caGxgMsvySTtIoswZ9pIG2WPRGRz`
-    });
 
-    const viewport = await SDV.createViewport({
-      session: session,
-      container: document.getElementById("viewer")
-    });
+    async function init() {
+      const session = await SDV.createSession({
+        ticket: ticket,
+        modelViewUrl: `https://www.shapediver.com/api/v2/model/${modelId}`
+      });
 
-    console.log("Viewer loaded");
+      await SDV.createViewport({
+        session: session,
+        container: document.getElementById("viewer")
+      });
+
+      console.log("Viewer loaded");
+    }
+
+    init();
   </script>
 </body>
 </html>
