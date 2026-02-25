@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ShapeDiver Test</title>
+  <title>ShapeDiver Viewer</title>
   <style>
     body { margin: 0; }
     #viewer { width: 100vw; height: 100vh; }
@@ -11,8 +11,22 @@
 <body>
   <div id="viewer"></div>
 
+  <!-- ShapeDiver Viewer API -->
   <script type="module">
-    console.log("JavaScript is running");
+    import { createViewport } from "https://cdn.jsdelivr.net/npm/@shapediver/viewer@latest";
+
+    const modelId = "p1caGxgMsvySTtIoswZ9pIG2WPRGRz";
+    const ticket = "d2f7b4bc51e47171f59b4603b113cb378ea54a552a9a28215308547cbdd9351f2ac15226984f3244a920fe60dd2f3674732c7f65440d446349df08ce80cf2c4870d85bbe7085c2fcb463833a82114f0f7af22fd0700b1d64c919c919b9affdc475ca13311fed6b-635196fa69895e98fc92f81c48c2c4ee";
+
+    const viewport = await createViewport({
+      container: document.getElementById("viewer"),
+      sessionSettings: {
+        modelId: modelId,
+        ticket: ticket
+      }
+    });
+
+    console.log("Viewer loaded");
   </script>
 </body>
 </html>
