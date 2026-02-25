@@ -2,36 +2,36 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ShapeDiver Viewer</title>
+  <title>ShapeDiver Iframe Test</title>
   <style>
-    body { margin: 0; }
-    #viewer { width: 100vw; height: 100vh; }
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    #viewer-wrapper {
+      width: 100vw;
+      height: 100vh;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
   </style>
 </head>
 <body>
-  <div id="viewer"></div>
+  <div id="viewer-wrapper">
+    <iframe id="sdv-iframe" width="100%" height="480" src="https://www.shapediver.com/app/iframe/20260220-test-03?primaryColor=%23317DD4&secondaryColor=%23393A45&surfaceColor=%23FFFFFF&backgroundColor=%23F8F8F8&showControls=1&showZoomButton=1&showFullscreenButton=1&showToggleControlsButton=1&hideDataOutputsIframe=1&hideAttributeVisualizationIframe=1&parametersDisable=1&parametersValidation=0" referrerpolicy="origin" allowfullscreen style="overflow-x: hidden; overflow-y: hidden; border-width: 0;">
+      <p>Your browser does not support iframes.</p>
+    </iframe>
+    
+    <iframe
+      id="sdv-iframe"
+      src="https://www.shapediver.com/app/iframe/20260220-test-03?primaryColor=%23317DD4&secondaryColor=%23393A45&surfaceColor=%23FFFFFF&backgroundColor=%23F8F8F8&showControls=1&showZoomButton=1&showFullscreenButton=1&showToggleControlsButton=1&hideDataOutputsIframe=1&hideAttributeVisualizationIframe=1&parametersDisable=1&parametersValidation=0"
+      allowfullscreen
+      referrerpolicy="origin">
+    </iframe>
 
-  <script type="module">
-    import {
-      createSession,
-      createViewport
-    } from "https://viewer.shapediver.com/v3/index.js";
-
-    const modelId = "p1caGxgMsvySTtIoswZ9pIG2WPRGRz";
-    const ticket = "d2f7b4bc51e47171f59b4603b113cb378ea54a552a9a28215308547cbdd9351f2ac15226984f3244a920fe60dd2f3674732c7f65440d446349df08ce80cf2c4870d85bbe7085c2fcb463833a82114f0f7af22fd0700b1d64c919c919b9affdc475ca13311fed6b-635196fa69895e98fc92f81c48c2c4ee";
-
-
-    const session = await createSession({
-      ticket: ticket,
-      modelViewUrl: `https://www.shapediver.com/api/v2/model/${modelId}`
-    });
-
-    await createViewport({
-      session: session,
-      container: document.getElementById("viewer")
-    });
-
-    console.log("Viewer loaded");
-  </script>
+  </div>
 </body>
 </html>
